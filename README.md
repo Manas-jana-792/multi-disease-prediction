@@ -1,13 +1,6 @@
 # 🏥 Multi Disease Prediction System
 
-A full-stack Machine Learning web application that predicts the risk of **Heart Disease**, **Stroke**, and **Diabetes** using patient health data. Built with a production-style architecture — **FastAPI backend** serving ML models, and a **Streamlit frontend** for the user interface.
-
----
-
-## 🚀 Live Demo
-
-- Frontend:  Coming soon...
-- API Docs: Coming soon...
+A full-stack Machine Learning web application that predicts the risk of **Heart Disease**, **Stroke**, **Diabetes**, and **Breast Cancer** using patient health data. Built with a production-style architecture — **FastAPI backend** serving ML models, and a **Streamlit frontend** for the user interface.
 
 ---
 
@@ -28,8 +21,9 @@ This separates the UI from the prediction logic, mirroring how real-world ML sys
 | 🫀 Heart Disease | Logistic Regression | ROC-AUC ≈ 0.90 |
 | 🧠 Stroke | Logistic Regression | ROC-AUC ≈ 0.84 |
 | 🩸 Diabetes | XGBoost | ROC-AUC ≈ 0.97 |
+| 🎗️ Breast Cancer | Logistic Regression | ROC-AUC ≈ 0.996, F1 ≈ 0.95 |
 
-All models were trained on real, publicly available healthcare datasets and compared against Decision Tree, Random Forest, KNN, and XGBoost before selecting the best performer.
+All models were trained on real, publicly available healthcare datasets and compared against Decision Tree, Random Forest, KNN, SVM, Gradient Boosting, and XGBoost before selecting the best performer.
 
 ---
 
@@ -44,7 +38,7 @@ All models were trained on real, publicly available healthcare datasets and comp
 
 ## ✨ Features
 
-- Predicts Heart Disease, Stroke, and Diabetes
+- Predicts Heart Disease, Stroke, Diabetes, and Breast Cancer
 - FastAPI REST API backend
 - Interactive Streamlit dashboard
 - Automatic data preprocessing
@@ -61,7 +55,7 @@ All models were trained on real, publicly available healthcare datasets and comp
 multi-disease-prediction/
 │
 ├── backend/
-│   ├── main.py                # FastAPI app with /predict/heart, /predict/stroke, /predict/diabetes
+│   ├── main.py                # FastAPI app with /predict/heart, /predict/stroke, /predict/diabetes, /predict/breast-cancer
 │   ├── requirements.txt
 │   └── models/                # Trained models + preprocessors (.pkl)
 │
@@ -72,12 +66,14 @@ multi-disease-prediction/
 ├── notebooks/
 │   ├── heart_training.ipynb
 │   ├── stroke_training.ipynb
-│   └── diabetes_training.ipynb
+│   ├── diabetes_training.ipynb
+│   └── breast_cancer_training.ipynb
 │
 ├── datasets/
 │   ├── heart.csv
 │   ├── healthcare-dataset-stroke-data.csv
-│   └── diabetes_prediction_dataset.csv
+│   ├── diabetes_prediction_dataset.csv
+│   └── breast_cancer.csv
 │
 └── README.md
 ```
@@ -139,6 +135,8 @@ curl -X POST "http://127.0.0.1:8000/predict/diabetes" \
   "blood_glucose_level": 140
 }'
 ```
+
+The Breast Cancer endpoint (`/predict/breast-cancer`) takes the 30 standard features from the Wisconsin Breast Cancer dataset (`radius_mean`, `texture_mean`, `perimeter_mean`, ... `fractal_dimension_worst`) — see `/docs` for the full schema once the backend is running.
 
 ---
 
